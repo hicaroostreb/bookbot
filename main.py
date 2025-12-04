@@ -1,3 +1,4 @@
+import sys
 from stats import count_words, count_char, sort_dict
 
 def get_book_text(filepath):
@@ -7,7 +8,12 @@ def get_book_text(filepath):
 
 
 def main():
-    filepath = "books/frankenstein.txt"
+    try:
+        filepath = sys.argv[1]
+    except IndexError:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
     book_text = get_book_text(filepath)
     total_words = count_words(book_text)
     dict_values = count_char(book_text)
